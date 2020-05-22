@@ -1,3 +1,8 @@
+provider "azurerm" {
+  version = "=2.0.0"
+  features {}
+}
+
 terraform {
   required_version = "> 0.12.0"
 
@@ -6,8 +11,8 @@ terraform {
 }
 
 variable "resource_group_name" {
-  # default = "tailspin-space-game-rg"
-  default = "tf-storage-rg"
+  default = "tailspin-space-game-rg"
+  #default = "tf-storage-rg"
   description = "The name of the resource group"
 }
 
@@ -34,7 +39,6 @@ resource "azurerm_resource_group" "spacegame" {
   name     = "${var.resource_group_name}"
   location = "${var.resource_group_location}"
 }
-
 resource "azurerm_app_service_plan" "spacegame" {
   name                = "${var.app_service_plan_name}"
   location            = "${azurerm_resource_group.spacegame.location}"
